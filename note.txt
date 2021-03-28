@@ -1,0 +1,24 @@
+npm init
+npm insall mongodb --save
+
+mongose Object relation model : It make easy  to structure a data , maybe we need add custome validation
+for the user , validate password. We can do witout mongoose but to make these thing from the scratch
+
+mongoosejs.com
+
+Body parser: It convert the body into json
+
+Testing the API:
+
+expect : For session
+mocha: for entire test sweet super test 2 test are express route and nodemon 
+
+npm i expect mocha nodemon supertest --save-dev
+
+MONGO DB QUERIES:
+
+Best apraoch for finding unique data to use findOne() instead of find() beacause 
+in findOne() when it is found it will not search for another and when it is  not found it will returns null
+so that you can response that accordingly however
+in find()  when it is found it will search for another and when it is  not found it will returns empty object
+in findById it is better the findOne when you only find the data by id 
