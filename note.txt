@@ -22,3 +22,28 @@ in findOne() when it is found it will not search for another and when it is  not
 so that you can response that accordingly however
 in find()  when it is found it will search for another and when it is  not found it will returns empty object
 in findById it is better the findOne when you only find the data by id 
+
+Heroku :
+
+sudo snap install --classic heroku
+heroku create
+
+express.static('directorypath/public') is to serve the static file
+
+express :  It is layer of abstraction over regular node
+Mongoose is layer of abstraction over the regular mongodb driver
+Object data Modeling library is just a way to write JS code that will than interact with a database
+
+Difference b/w patch and put
+Also, another difference is that when you want to update a resource with PUT request,
+ you have to send the full payload as the request whereas with PATCH , 
+you only send the parameters which you want to update
+
+Aggregation Pipline:
+    It define a Pipline that all documents from a certain collection go through where they are
+    process step by step in order to transform them into Aggregated results.
+    For example in order to calculate max , min values , distances,averages
+
+Virtual Properties: 
+if we want to convert km to meter , lit to ml of the property value in model to show in the 
+output but it is not exist in database
