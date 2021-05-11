@@ -2,6 +2,8 @@ const express = require('express');
 // const bodyParser = require('body-parser');
 
 const todoRouter = require('./routes/todoRoutes');
+const userRouter = require('./routes/userRoutes');
+
 const morgan = require('morgan');
 
 const AppError = require('./utils/appError');
@@ -21,6 +23,8 @@ app.use((req,res,next)=>{
 })
 
 app.use('/todos',todoRouter);
+
+app.use('/users',userRouter);
 
 app.all('*',(req,res,next)=>{
     // res.status(404).json({

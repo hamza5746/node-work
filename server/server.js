@@ -1,13 +1,11 @@
 const dotenv = require('dotenv');
 dotenv.config({path:'./server/config.env'});
-process.on('uncaughtException',err => {
-    console.log(err.name,err.messsage);
-    console.log('UNHANDLED REJECTION! Shutting down');
-
-    server.close(()=>{
-        process.exit(1);
-    });
-});
+// process.on('uncaughtException',err => {
+//     console.log(err.name,err.messsage);
+//     console.log('UNHANDLED REJECTION! Shutting down');
+//     process.exit(1);
+    
+// });
 const mongoose = require('./db/mongoose');
 const app = require('./app');
 

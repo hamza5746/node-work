@@ -28,16 +28,11 @@ const sendErrForDev = (err,res) => {
 
 const sendErrForProd = (err,res)=>{ 
 
-    // res.status(err.statusCode).json({
-    //     status:err.status,
-    //     error:err,
-    //     message : err.message,
-    //     stack :err.stack
-    // });
     //Operational , trusted error :send message to client
     if(err.isOperational){
         res.status(err.statusCode).json({
             status:err.status,
+            code :err.statusCode,
             message : err.message
         });
         // Programming or other unknown error :don't leak error detail
@@ -46,6 +41,7 @@ const sendErrForProd = (err,res)=>{
         // console.error('Error',err);
         res.status(500).json({
             status:'error',
+            code :500,
             message:'Something went very wrong'
         });
     }
@@ -66,9 +62,9 @@ module.exports = (err,req,res,next)=>{
     } else if(process.env.NODE_ENV=== 'production') {
         
         // let error = { ...err };
-        // if(error.name === 'CastError') error = handleCastError(error);
+        if(err.name === 'CastError') err = handleCastError(err);
         
-        // if(error.code === 11000) error = handleDuplicateError(error);
+        if(err.code === 11000) err = handleDuplicateError(err);
         // console.log(error);
         if(err.name === 'ValidationError') err = handleValidationError(err);
         sendErrForProd(err,res);
