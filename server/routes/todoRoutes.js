@@ -2,7 +2,7 @@ const express = require('express');
 const todoController = require('./../controllers/todoController');
 const router = express.Router();
 
-router.param('id', todoController.checkId);
+// router.param('id', todoController.checkId); For middleware function 
 
 //Top 5 
 router
@@ -21,7 +21,7 @@ router.route('/get-month-stats/:year')
 
 router.route('/')
 .get(todoController.getAllTodos)
-.post(todoController.checkData,todoController.addTodo)
+.post(todoController.addTodo) // todoController.checkData
 
 router.route('/:id')
 .get(todoController.getTodobyId).

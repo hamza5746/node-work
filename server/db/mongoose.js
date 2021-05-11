@@ -1,11 +1,24 @@
+const { Server } = require('mongodb');
 const mongoose = require('mongoose');
+// const dotenv  = require('dotenv');
+
+// dotenv.config({path: '../config.env'});
+
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://hamzahanif:q8m40Tmznw5mH7La@cluster0.uu7rf.mongodb.net/TodoApp?retryWrites=true',
+const DB = process.env.DATABASE.replace(
+    '<PASSWORD>',
+    process.env.DATABASE_PASSWORD
+);
+mongoose.connect(DB,
 {
     useNewUrlParser:true, 
-    useUnifiedTopology: true,
-    useFindAndModify: false 
+    useFindAndModify: false,
+    useCreateIndex:true,
+    useUnifiedTopology: true
+}).then(()=>{
+    console.log('DB connection successful');
 });
+
 
 module.exports = {mongoose}

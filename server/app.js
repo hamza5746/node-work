@@ -4,6 +4,8 @@ const express = require('express');
 const todoRouter = require('./routes/todoRoutes');
 const morgan = require('morgan');
 
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 let app = express();
 
 //MiddleWare Functions
@@ -20,6 +22,17 @@ app.use((req,res,next)=>{
 
 app.use('/todos',todoRouter);
 
+app.all('*',(req,res,next)=>{
+    // res.status(404).json({
+    //     status:'fail',
+    //     mesage:`Can't find ${req.originalUrl} on this server` 
+    // })
+    const err = new AppError(`Can't find ${req.originalUrl} on this server`,400 );
+    next(err);
+})
+
+//GLOBAL HANDLING MIDDLEWARE ERROR
+app.use(globalErrorHandler);
 
 
 // app.post('/todos', addTodo);
